@@ -79,8 +79,10 @@ REST_FRAMEWORK = {
 
 CORS_ALLOWED_ORIGINS = config(
     'CORS_ALLOWED_ORIGINS',
-    default='http://localhost:3000,http://localhost:8000,http://127.0.0.1:3000'
+    default='http://localhost:3000,http://localhost:8000,http://127.0.0.1:3000,https://breathe-esg-frontend-5d3y.onrender.com'
 ).split(',')
+
+CORS_ALLOW_CREDENTIALS = True
 
 AUTH_PASSWORD_VALIDATORS = []  # Disabled for development
 
