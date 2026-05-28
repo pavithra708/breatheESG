@@ -381,28 +381,34 @@ class DashboardViewSet(viewsets.ViewSet):
     @action(detail=False, methods=['get'])
     def metrics(self, request):
         """Get dashboard metrics."""
-        tenant_id = request.query_params.get('tenant_id', 1)
-        
-        records = EmissionRecord.objects.filter(tenant_id=tenant_id)
-        
-        return Response({
-            'total_records': records.count(),
-            'pending_review': records.filter(status='pending').count(),
-            'flagged': records.filter(status='flagged').count(),
-            'approved': records.filter(status='approved').count(),
-            'locked': records.filter(status='locked').count(),
-            'suspicious': records.filter(suspicious_flag=True).count(),
-            'by_source': {
-                'sap': records.filter(data_source__source_type='sap').count(),
-                'utility': records.filter(data_source__source_type='utility').count(),
-                'travel': records.filter(data_source__source_type='travel').count(),
-            },
-            'by_scope': {
-                '1': records.filter(scope='1').count(),
-                '2': records.filter(scope='2').count(),
-                '3': records.filter(scope='3').count(),
-            },
-        })
+        try:
+            tenant_id = int(request.query_params.get('tenant_id', 1))
+            
+            records = EmissionRecord.objects.filter(tenant_id=tenant_id)
+            
+            return Response({
+                'total_records': records.count(),
+                'pending_review': records.filter(status='pending').count(),
+                'flagged': records.filter(status='flagged').count(),
+                'approved': records.filter(status='approved').count(),
+                'locked': records.filter(status='locked').count(),
+                'suspicious': records.filter(suspicious_flag=True).count(),
+                'by_source': {
+                    'sap': records.filter(data_source__source_type='sap').count(),
+                    'utility': records.filter(data_source__source_type='utility').count(),
+                    'travel': records.filter(data_source__source_type='travel').count(),
+                },
+                'by_scope': {
+                    '1': records.filter(scope='1').count(),
+                    '2': records.filter(scope='2').count(),
+                    '3': records.filter(scope='3').count(),
+                },
+            })
+        except Exception as e:
+            return Response(
+                {'error': str(e)},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
     
     @action(detail=False, methods=['get'])
     def data_sources(self, request):

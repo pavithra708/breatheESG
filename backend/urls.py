@@ -16,9 +16,28 @@ router.register(r'dashboard', DashboardViewSet, basename='dashboard')
 router.register(r'audit-log', AuditLogViewSet, basename='audit-log')
 
 def health_check(request):
-    return JsonResponse({'status': 'ok'})
+    return JsonResponse({'status': 'ok', 'message': 'API is running'})
+
+def debug_info(request):
+    """Debug endpoint to check if imports are working."""
+    try:
+        from ingestion_app.models import Tenant, EmissionRecord
+        tenant_count = Tenant.objects.count()
+        record_count = EmissionRecord.objects.count()
+        return JsonResponse({
+            'status': 'ok',
+            'tenants': tenant_count,
+            'records': record_count,
+            'database': 'connected'
+        })
+    except Exception as e:
+        return JsonResponse({
+            'status': 'error',
+            'error': str(e)
+        }, status=500)
 
 urlpatterns = [
     path('health/', health_check),
+    path('debug/', debug_info),
     path('api/', include(router.urls)),
 ]
