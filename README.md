@@ -290,25 +290,6 @@ cd frontend
 npm start
 ```
 
-### Production Options
-
-**Option 1: Render (Recommended)**
-```bash
-# Backend: Python/Django app on Render
-# Frontend: Static site on Render
-# Database: PostgreSQL on Render
-```
-
-**Option 2: Railway**
-```bash
-# Similar setup, different provider
-```
-
-**Option 3: Heroku** (legacy, might cost)
-```bash
-# Still works, but requires paid dynos
-```
-
 ## Documentation
 
 - **[MODEL.md](docs/MODEL.md)** — Data model architecture & justification (35% of evaluation)
@@ -316,74 +297,12 @@ npm start
 - **[TRADEOFFS.md](docs/TRADEOFFS.md)** — What we didn't build & why (10% of evaluation)
 - **[SOURCES.md](docs/SOURCES.md)** — Research into each data source (20% of evaluation)
 
-## What This Project Demonstrates
-
-### Engineering Judgment
-- ✅ Focused scope (one thing done well, not many things half-done)
-- ✅ Enterprise understanding (real source formats, compliance requirements)
-- ✅ Thoughtful tradeoffs (CSV over API integration, rules over ML)
-- ✅ Extensible architecture (easy to add new sources later)
-
-### Data Platform Thinking
-- ✅ Multi-source normalization
-- ✅ Heterogeneous schema handling
-- ✅ Quality scoring & anomaly detection
-- ✅ Audit-ready immutability
-- ✅ Analyst workflow optimization
-
-### Real-World Problem Solving
-- ✅ Handles German SAP headers
-- ✅ Converts mixed units (L vs liters vs Litre)
-- ✅ Parses multiple date formats
-- ✅ Detects duplicate uploads
-- ✅ Expands travel data to multiple record types
-- ✅ Flags suspicious values with context
-
-## Testing
-
-### Test the Upload Pipeline
-1. Open http://localhost:3000
-2. Go to "Upload Data"
-3. Upload `sample_data/sap_fuel_export.csv` (SAP)
-4. System should:
-   - Map German headers to standard fields (90%+ confidence)
-   - Convert units (liters → L)
-   - Flag negative value as suspicious
-   - Show data quality score
-
-5. Go to "Review"
-6. See all records; flag items need correction
-7. Approve individual records
-8. Lock for audit (immutable)
 
 ### Test the Workflow
 1. Upload utility CSV
 2. Notice billing period issues flagged
 3. Approve good records
 4. See system prevents approval of flagged records
-
-## Future Enhancements
-
-### Short-term (weeks 2-4)
-- [ ] Real SAP OData integration (replace CSV)
-- [ ] Utility API connectors (Enel, GreenTech, etc.)
-- [ ] Concur API webhooks for live travel data
-- [ ] Role-based access (Uploader, Analyst, Admin)
-- [ ] Bulk operations (batch approve, reprocess)
-
-### Medium-term (weeks 5-8)
-- [ ] Emissions calculation engine
-- [ ] Custom validation rule builder
-- [ ] Historical anomaly detection (ML)
-- [ ] Data quality dashboards
-- [ ] Scheduled report generation
-
-### Long-term (month 2+)
-- [ ] Time-series analytics
-- [ ] Supplier Scope 3 mapping
-- [ ] Automated scientific review
-- [ ] API rate-limiting & quotas
-- [ ] Advanced fraud detection
 
 ## Architecture Decisions
 
@@ -408,17 +327,6 @@ npm start
 - Unified analyst dashboard (one query, not three)
 - Simpler validation rules (apply uniformly)
 - Future emissions calculation (single interface)
-
-## Contributing
-
-This is an internship project. For feedback on implementation:
-1. Review [MODEL.md](docs/MODEL.md) for data architecture
-2. Review [DECISIONS.md](docs/DECISIONS.md) for engineering choices
-3. Test with sample CSVs in `/sample_data/`
-
-## License
-
-Proprietary — Breathe ESG
 
 ---
 
