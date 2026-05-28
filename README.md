@@ -7,11 +7,11 @@ This is a **production-ready prototype** for enterprise ESG data ingestion, norm
 Unlike simple CSV upload systems, this platform solves the **real ESG bottleneck**: taking heterogeneous messy data from multiple systems (SAP, utility portals, travel platforms) and turning it into audit-ready, normalized records.
 
 **Core Features**:
-- ✅ **Intelligent column mapping** — Auto-detects SAP German headers, utility formats, travel structures
-- ✅ **Multi-source normalization** — SAP fuel, utility electricity, corporate travel → single unified schema
-- ✅ **Validation engine** — Detects outliers, duplicates, missing data; confidence scoring
-- ✅ **Analyst review workflow** — Flagged records, issue resolution, approval, immutable audit locks
-- ✅ **Enterprise-ready** — Multi-tenant, full audit trail, scope categorization, compliance-ready
+-  **Intelligent column mapping** — Auto-detects SAP German headers, utility formats, travel structures
+-  **Multi-source normalization** — SAP fuel, utility electricity, corporate travel → single unified schema
+-  **Validation engine** — Detects outliers, duplicates, missing data; confidence scoring
+-  **Analyst review workflow** — Flagged records, issue resolution, approval, immutable audit locks
+-  **Enterprise-ready** — Multi-tenant, full audit trail, scope categorization, compliance-ready
 
 ## Quick Start
 
@@ -103,25 +103,6 @@ Analyst Dashboard
   └── Locked for Audit (status=locked, immutable)
 ```
 
-## API Endpoints
-
-### Upload
-- `POST /api/upload/upload_sap/` — SAP fuel/procurement data
-- `POST /api/upload/upload_utility/` — Utility electricity data
-- `POST /api/upload/upload_travel/` — Corporate travel data
-
-### Records
-- `GET /api/records/` — List records (filterable by status, tenant)
-- `GET /api/records/{id}/` — Get single record with issues
-- `PATCH /api/records/{id}/approve/` — Analyst approves record
-- `POST /api/records/{id}/lock/` — Lock record for audit
-
-### Dashboard
-- `GET /api/dashboard/metrics/` — Summary statistics
-- `GET /api/dashboard/data_sources/` — Upload history
-
-### Audit
-- `GET /api/audit-log/` — Full change log
 
 ## Data Model
 
