@@ -14,11 +14,11 @@ from decimal import Decimal
 from typing import List, Dict, Tuple, Optional
 from datetime import datetime
 
-from normalization import (
+from .normalization import (
     SAPNormalizer, UtilityNormalizer, TravelNormalizer,
     ColumnMapper, DateParser
 )
-from validation import ValidationEngine, DataQualityScorer
+from .validation import ValidationEngine, DataQualityScorer
 
 
 class IngestionPipeline:

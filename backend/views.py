@@ -32,7 +32,7 @@ from ingestion_app.models import (
     Scope,
     Category,
 )
-from ingestion import IngestionPipeline, AuditLogger
+from .ingestion import IngestionPipeline, AuditLogger
 
 
 class TenantSerializer:
