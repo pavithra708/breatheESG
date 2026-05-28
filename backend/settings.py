@@ -55,11 +55,15 @@ if config('DATABASE_URL', default=None):
         'default': dj_database_url.config(default=config('DATABASE_URL'), conn_max_age=600)
     }
 else:
-    # Development: SQLite
-    DATABASES = {
+    # Development: PostgreSQL
+        DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'breatheesg',
+            'USER': 'postgres',
+            'PASSWORD': config('DB_PASSWORD'),
+            'HOST': 'localhost',
+            'PORT': '5433',
         }
     }
 
