@@ -1,0 +1,7 @@
+Werk,Material,Menge,Einheit,Buchungsdatum,Kostenstelle,Betrag_EUR
+PLT-01,Diesel,500,L,25.05.2026,CC-001,625
+PLT-02,Petrol,1200,liters,2026/05/24,CC-002,1560
+PLT-01,Diesel,750,Litre,2026-05-23,CC-001,937.50
+PLT-03,Natural Gas,2500,m³,25/05/2026,CC-003,750
+PLT-02,Diesel,-100,L,2026-05-22,CC-002,-125
+PLT-01,Petrol,800,L,25.05.2026,CC-001,1040

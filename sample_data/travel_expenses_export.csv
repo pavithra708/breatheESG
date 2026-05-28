@@ -1,0 +1,7 @@
+Employee Name,Department,Travel Type,Origin Airport,Destination Airport,Distance km,Travel Class,Hotel Nights,Date of Travel
+Rahul Sharma,Engineering,Flight,BLR,DXB,2500,Business,3,2026-05-10
+Priya Gupta,Sales,Flight,BLR,LHR,7500,Business,5,2026-05-12
+Amit Patel,Finance,Ground,BLR,HYD,600,Economy,1,2026-05-15
+Neha Singh,Engineering,Flight,BLR,SFO,13000,Business,4,2026-05-08
+Rahul Sharma,Engineering,Flight,DXB,BLR,2500,Economy,0,2026-05-13
+Sanjay Kumar,Operations,Flight,BLR,SIN,3300,Business,2,2026-05-20

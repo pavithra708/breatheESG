@@ -1,0 +1,7 @@
+Meter ID,Facility,Billing Period Start,Billing Period End,Usage kWh,Tariff Type,Rate per kWh USD
+MTR-11,Bangalore Office,2026-04-01,2026-04-28,1200,Commercial,0.12
+MTR-12,Delhi Warehouse,2026-04-01,2026-04-30,3500,Industrial,0.08
+MTR-11,Bangalore Office,2026-05-01,2026-05-25,5200,Commercial,0.12
+MTR-13,Mumbai HQ,2026-03-21,2026-04-20,2800,Commercial,0.11
+MTR-12,Delhi Warehouse,2026-05-01,2026-05-25,2900,Industrial,0.08
+MTR-14,Pune Lab,2026-04-15,2026-05-14,800,Research,0.15
