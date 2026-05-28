@@ -8,7 +8,10 @@ function App() {
   const [metrics, setMetrics] = useState(null);
   const [uploading, setUploading] = useState(false);
 
-  const API_URL = process.env.REACT_APP_API_URL || 'https://breathe-esg-backend-aoxl.onrender.com';
+  const API_BASE = (
+    process.env.REACT_APP_API_URL || 'https://breathe-esg-backend-aoxl.onrender.com'
+  ).replace(/\/$/, '');
+  const API_URL = `${API_BASE}/api`;
   const TENANT_ID = 1; // Default tenant for demo
 
   useEffect(() => {

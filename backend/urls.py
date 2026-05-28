@@ -40,4 +40,6 @@ urlpatterns = [
     path('health/', health_check),
     path('debug/', debug_info),
     path('api/', include(router.urls)),
+    # Backward-compatible paths (older frontend builds omitted /api/)
+    path('', include(router.urls)),
 ]

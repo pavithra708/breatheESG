@@ -57,7 +57,7 @@ if config('DATABASE_URL', default=None):
     }
 else:
     # Development: PostgreSQL
-        DATABASES = {
+    DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'breatheesg',
@@ -75,16 +75,24 @@ REST_FRAMEWORK = {
         'rest_framework.filters.SearchFilter',
         'rest_framework.filters.OrderingFilter',
     ],
+    # Demo API: no session auth (avoids CSRF failures on upload/approve from SPA)
+    'DEFAULT_AUTHENTICATION_CLASSES': [],
+    'DEFAULT_PERMISSION_CLASSES': [],
 }
 
+_DEFAULT_CORS_ORIGINS = (
+    'http://localhost:3000,http://localhost:8000,http://127.0.0.1:3000,'
+    'https://breathe-esg-frontend-5d3y.onrender.com'
+)
+_cors_raw = config('CORS_ALLOWED_ORIGINS', default='').strip()
 CORS_ALLOWED_ORIGINS = [
-    origin.strip() for origin in config(
-        'CORS_ALLOWED_ORIGINS',
-        default='http://localhost:3000,http://localhost:8000,http://127.0.0.1:3000,https://breathe-esg-frontend-5d3y.onrender.com'
-    ).split(',')
+    origin.strip()
+    for origin in (_cors_raw or _DEFAULT_CORS_ORIGINS).split(',')
+    if origin.strip()
 ]
 
 CORS_ALLOW_CREDENTIALS = True
+CSRF_TRUSTED_ORIGINS = CORS_ALLOWED_ORIGINS
 
 AUTH_PASSWORD_VALIDATORS = []  # Disabled for development
 
@@ -95,8 +103,9 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Security settings for production
+# Security settings for production (Render terminates TLS at the edge)
 if not DEBUG:
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
